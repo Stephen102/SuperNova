@@ -430,7 +430,7 @@ MISC:CreateSlider({
    end,
 })
 
-MISC:CreateParagraph({Title = "DISCLAIMER", Content = "Freeze Ball needs \"Freeze\" Ability to work."})
+MISC:CreateParagraph({Title = "DISCLAIMER", Content = "Freeze Ball needs Freeze Ability to work."})
 
 MISC:CreateToggle({
    Name = "Bug Ball",
