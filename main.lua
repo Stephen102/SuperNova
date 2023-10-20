@@ -1,3 +1,4 @@
+if game.GameId ~= 4777817887 then return end
 while not workspace.Balls:GetChildren()[2] do 
 wait(0.1)
 end
