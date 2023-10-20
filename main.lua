@@ -53,8 +53,7 @@ local Config = {
   },
   Troll = {
       FreezeBall = false,
-      FreezeDelay = 1,
-      BugBall = false,
+      FreezeDelay = 1
   }
 }
 
@@ -206,9 +205,6 @@ end
         Hitbox.Touched:Connect(function(P)
 	        if not Newborn and P.Parent == Balls and Config.AutoParrying["AutoParryEnabled"] and Character:FindFirstChild"Highlight" then
 	        	Parry:Fire()
-                if Config.Troll["BugBall"] then
-                    Shake:Fire(P.Position)
-                end
 	        end
         end)
 
@@ -431,22 +427,6 @@ MISC:CreateSlider({
 })
 
 MISC:CreateParagraph({Title = "DISCLAIMER", Content = "Freeze Ball needs Freeze Ability to work."})
-
-MISC:CreateToggle({
-   Name = "Bug Ball",
-   CurrentValue = false,
-   Flag = "BugBall",
-   Callback = function(Value)
-       Config.Troll["BugBall"] = Value
-
-       Rayfield:Notify({
-            Title = Value and "Bug Ball is now Enabled!" or "Bug Ball is now Disabled!",
-            Content = Value and "Now the ball will be bugged" or "Now the ball won't be bugged.",
-            Duration = 4,
-            Image = Value and "7733715400" or "7743878857"
-       })
-   end,
-})
 
 MISC:CreateSection"Other"
 
