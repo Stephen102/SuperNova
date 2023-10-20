@@ -310,7 +310,7 @@ end
                               repeat
                                  Near = target.Position + Vector3.new(math.random(-20,20),0,math.random(-20,20))
                               until (target.Position - Near).Magnitude > 19
-                              if math.random(1,20)%2==0  and Character:FindFirstChild"Humanoid".FloorMaterial ~= Enum.Material.Air  then
+                              if math.random(1,3)%2==0 and Character:FindFirstChild"Humanoid".FloorMaterial ~= Enum.Material.Air  then
                                   Character:FindFirstChild"Humanoid":ChangeState("Jumping")
                               end
                               wait(Config.AutoMove["ReactionTime"])
