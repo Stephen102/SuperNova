@@ -232,7 +232,7 @@ end)
 end)
 
 Alive.ChildRemoved:Connect(function()
-   if Alive:FindFirstChild(LocalPlayer.Name) and Config.WinAction["WinActionEnabled"] then
+   if #Alive:GetChildren() == 1 and Alive:FindFirstChild(LocalPlayer.Name) and Config.WinAction["WinActionEnabled"] then
        wait(Config.WinAction["WinActionDelay"])
        SayMessageRequest:FireServer(Config.WinAction["WinActionMessage"],"All")
    end
