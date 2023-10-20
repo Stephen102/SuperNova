@@ -389,7 +389,7 @@ AUTOBOT:CreateToggle({
    CurrentValue = false,
    Flag = "WinActionEnabled",
    Callback = function(Value)
-       Config.WinACtion["WinActionEnabled"] = Value
+       Config.WinAction["WinActionEnabled"] = Value
    end,
 })
 
