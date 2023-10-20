@@ -359,7 +359,7 @@ AUTOBOT:CreateSlider({
    end,
 })
 
-MISC:CreateParagraph({Title = "DISCLAIMER", Content = "Walking cancels the auto movement, reactivate it to work again."})
+AUTOBOT:CreateParagraph({Title = "DISCLAIMER", Content = "Walking cancels the auto movement, reactivate it to work again."})
 
 AUTOBOT:CreateSection"Win Action"
 
