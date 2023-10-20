@@ -1,4 +1,3 @@
-if game.gameId ~= 4777817887 then return end
 while not workspace.Balls:GetChildren()[2] do 
 wait(0.1)
 end
@@ -41,9 +40,9 @@ local Config = {
     ReactionTime = 0.5
   },
   WinAction = {
-    Message = "",
-    Emote = "",
-    Delay = 1
+    WinActionEnabled = false,
+    WinActionMessage = "",
+    WinActionDelay = 1
   },
   Other = {
       AutoClick = false,
@@ -232,6 +231,13 @@ end)
     end
 end)
 
+Alive.ChildRemoved:Connect(function()
+   if Alive:FindFirstChild(LocalPlayer.Name) and Config.WinAction["WinActionEnabled"] then
+       wait(Config.WinAction["WinActionDelay"])
+       SayMessageRequest:FireServer(Config.WinAction["WinActionMessage"],"All")
+   end
+end)
+
 Hitbox.Touched:Connect(function(P)
 	        if Ball and P.Parent == Balls and Config.AutoParrying["AutoParryEnabled"] and Character:FindFirstChild"Highlight" then
 	        	Parry:Fire()
@@ -353,6 +359,40 @@ AUTOBOT:CreateSlider({
    end,
 })
 
+MISC:CreateParagraph({Title = "DISCLAIMER", Content = "Walking cancels the auto movement, reactivate it to work again."})
+
+AUTOBOT:CreateSection"Win Action"
+
+AUTOBOT:CreateInput({
+   Name = "Win Message",
+   PlaceholderText = "gg.",
+   RemoveTextAfterFocusLost = false,
+   Callback = function(Text)
+       Config.WinAction["WinActionMessage"] = Text
+   end,
+})
+
+AUTOBOT:CreateSlider({
+   Name = "Win Action Delay",
+   Range = {0.5, 2},
+   Increment = 0.05,
+   Suffix = "Delay",
+   CurrentValue = 1,
+   Flag = "WinActionDelay",
+   Callback = function(Value)
+       Config.WinAction["WinActionDelay"] = Value
+   end,
+})
+
+AUTOBOT:CreateToggle({
+   Name = "Win Message Enabled",
+   CurrentValue = false,
+   Flag = "WinActionEnabled",
+   Callback = function(Value)
+       Config.WinACtion["WinActionEnabled"] = Value
+   end,
+})
+
 local MISC = Window:CreateTab("Misc", 7734110220)
 
 MISC:CreateSection"Troll"
@@ -432,10 +472,12 @@ MISC:CreateToggle({
    Flag = "AutoClick",
    Callback = function(Value)
        Config.Other["AutoClick"] = Value
+       spawn(function()
        while Config.Other["AutoClick"] do
             Parry:Fire()
             RunService.Stepped:Wait()
        end
+       end)
        Rayfield:Notify({
             Title = Value and "Auto Clicker is now Enabled!" or "Auto Clicker is now Disabled!",
             Content = Value and "Now you will start endlessly parry" or "Now you won't endlessly parry.",
