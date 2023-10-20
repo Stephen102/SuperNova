@@ -307,20 +307,20 @@ end
                local target = findTarget()
            
             if target and Character.PrimaryPart and Character.PrimaryPart ~= target and Character.Parent == Alive then
-               local Near = target.Position + Vector3.new(math.random(-20,20),0,math.random(-20,20))
+               local Near = target.Position + Vector3.new(math.random(-30,30),0,math.random(-30,30))
                               repeat
-                                 Near = target.Position + Vector3.new(math.random(-20,20),0,math.random(-20,20))
-                              until (target.Position - Near).Magnitude > 19
+                                 Near = target.Position + Vector3.new(math.random(-30,30),0,math.random(-30,30))
+                              until (target.Position - Near).Magnitude > 29
                               if math.random(1,3)%2==0 and Character:FindFirstChild"Humanoid".FloorMaterial ~= Enum.Material.Air  then
                                   Character:FindFirstChild"Humanoid":ChangeState("Jumping")
                               end
                               wait(Config.AutoMove["ReactionTime"])
                               Character:FindFirstChild"Humanoid":MoveTo(Near)
                else if Character.PrimaryPart then
-                    local Near = Ball.Position + Vector3.new(math.random(-10,10),0,math.random(-10,10))
+                    local Near = Ball.Position + Vector3.new(math.random(-5,5),0,math.random(-5,5))
                               repeat
-                                 Near = Ball.Position + Vector3.new(math.random(-10,10),0,math.random(-10,10))
-                              until (Ball.Position - Near).Magnitude > 9
+                                 Near = Ball.Position + Vector3.new(math.random(-5,5),0,math.random(-5,5))
+                              until (Ball.Position - Near).Magnitude > 4
                               wait(Config.AutoMove["ReactionTime"])
                               Character:FindFirstChild"Humanoid":MoveTo(Near)
                     if math.random(1,10)%2==0 and Character:FindFirstChild"Humanoid".FloorMaterial ~= Enum.Material.Air then
